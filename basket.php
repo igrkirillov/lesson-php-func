@@ -50,7 +50,6 @@ function closeProgram(): void
     global $operationNumber;
 
     showBasket();
-    $operationNumber = 0;
 }
 
 function addItem(): void
