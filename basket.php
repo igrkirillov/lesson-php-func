@@ -25,7 +25,7 @@ function clear(): void
 //    system('cls'); // windows
 }
 
-function requestOperation(): int
+function requestOperation(): void
 {
     global $operations;
     global $operationNumber;
