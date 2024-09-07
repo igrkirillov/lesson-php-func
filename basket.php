@@ -25,7 +25,7 @@ function clear(): void
 //    system('cls'); // windows
 }
 
-function requestOperation(): void
+function requestOperation(): int
 {
     global $operations;
     global $operationNumber;
@@ -47,7 +47,10 @@ function requestOperation(): void
 
 function closeProgram(): void
 {
+    global $operationNumber;
+
     showBasket();
+    $operationNumber = 0;
 }
 
 function addItem(): void
@@ -64,6 +67,11 @@ function deleteItem(): void
     global $items;
 
     // Проверить, есть ли товары в списке? Если нет, то сказать об этом и попросить ввести другую операцию
+    if (count($items) === 0) {
+        echo 'Пустой список товаров. Удаление товара невозможно.' . PHP_EOL;
+        return;
+    }
+
     showBasket();
 
     echo 'Введение название товара для удаления из списка:' . PHP_EOL . '> ';
@@ -111,12 +119,12 @@ do {
             echo 'Нажмите enter для продолжения';
             fgets(STDIN);
             break;
+
         case OPERATION_EXIT:
             closeProgram();
-            $operationNumber = 0;
     }
-
     echo "\n ----- \n";
+
 } while ($operationNumber > 0);
 
 echo 'Программа завершена' . PHP_EOL;
